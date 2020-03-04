@@ -12,4 +12,4 @@
 - nieprzydatna      : button.vote-no["data.total-vote"]
 - treść     : p.product-review-body
 - wady      : div.cons-cell > ul
-- zalety  :div.pros-cell > ul 
+- zalety  :div.pros-cell > ul
