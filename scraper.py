@@ -30,9 +30,17 @@ selectors = {
     "review_date":['span.review-time > time:nth-child(1)',"datetime"]
 }
 
+#funkcjia do usuwania znaków formatujących
+def remove_whitespaces(text):
+    for char in ["\n", "\r"]:
+        try:
+            return text.replace(char, ". ")
+        except AttributeError:
+            pass
+
 #adres URL strony z opiniami
 url_prefix = "https://www.ceneo.pl"
-product_id = input("Podaj kod produktu: ")
+product_id = "76891706"#input("Podaj kod produktu: ")
 url_postfix = "#tab=reviews"
 url = url_prefix+"/"+product_id+url_postfix
 
@@ -55,7 +63,12 @@ while url is not None:
         features = {key:extract_feature(opinion, *args)
                     for key, args in selectors.items()}
         features["opinion_id"] = int(opinion["data-entry-id"])
-        True if features["purchased"] == "Opinia potwierdzona zakupem" else False
+        features["purchased"] = True if features["purchased"] == "Opinia potwierdzona zakupem" else False
+        features["useful"] = int(features["useful"])
+        features["useless"] = int(features["useless"])
+        features["content"]=remove_whitespaces(features["content"])
+        features["pros"]=remove_whitespaces(features["pros"])
+        features["cons"]=remove_whitespaces(features["cons"])
 
         opinions_list.append(features)
 
@@ -66,5 +79,5 @@ while url is not None:
 
     print("url:",url)
 
-with open(product_id+".json", 'w', encoding='utf-8') as fp:
+with open("opinions/"+product_id+".json", 'w', encoding='utf-8') as fp:
     json.dump(opinions_list, fp, ensure_ascii=False, indent=4)
