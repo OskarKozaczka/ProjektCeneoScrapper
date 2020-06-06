@@ -20,11 +20,10 @@
 
         <nav class="container navbar navbar-expand-lg navbar-dark bg-dark sticky-top rounded">
             <div class="">
-                <a class="navbar-brand" href="./"> Strona główna</a>
-                <a class="navbar-brand" href="./extract"> Pobierz opinie</a>
+                <a class="navbar-brand" href="{{ url_for('index')}}"> Strona główna</a>
+                <a class="navbar-brand" href="{{ url_for('extract')}}"> Pobierz opinie</a>
                 <a class="navbar-brand" href="./products"> Lista produktów</a>
-                <a class="navbar-brand" href="./about"> O projekcie</a>
-
+                <a class="navbar-brand" href="{{ url_for('about')}}"> O projekcie</a>
             </div>
         </nav>
 
@@ -32,7 +31,6 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     {% block body %}
-                    <p>Ala ma kota</p>
                     {% endblock %}
                 </div>
             </div>
@@ -40,3 +38,5 @@
         <footer class="container fixed-bottom alert alert-info">Oskar Kozaczka</footer>
     </body>
 </html>
+{% block scripts %}
+{% endblock %}
