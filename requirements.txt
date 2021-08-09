@@ -49,7 +49,7 @@ PyScreeze==0.1.26
 python-dateutil==2.8.1
 PyTweening==1.0.3
 pytz==2019.3
-pywin32==227
+pywin32==301
 pyzmq==19.0.0
 requests==2.23.0
 six==1.14.0
